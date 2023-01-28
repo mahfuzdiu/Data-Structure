@@ -28,4 +28,14 @@ class LinkedList
             $currentNode->tail = $node;
         }
     }
+
+    public function insertAtFront($data)
+    {
+        $node = new Node($data);
+
+        $tempListHolder = $this->head;
+
+        $this->head = $node;
+        $this->head->tail = $tempListHolder;
+    }
 }
