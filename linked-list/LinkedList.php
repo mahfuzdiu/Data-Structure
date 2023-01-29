@@ -56,7 +56,7 @@ class LinkedList
             $currentNode = $currentNode->tail;
         }
 
-        if($currentNode->tail != null){
+        if($currentNode->data == $after){
             $tempNextNodesHolder = $currentNode->tail;
             $node = new Node($data);
             $currentNode->tail = $node;
@@ -67,4 +67,15 @@ class LinkedList
         }
 
     }
+
+//    public function insertBeforeData($before, $data)
+//    {
+//        $currentNode = $this->head;
+//
+//        while ($currentNode->data != $before && $currentNode->tail != null){
+//            $currentNode = $currentNode->tail;
+//        }
+//
+//        if($currentNode->tail)
+//    }
 }

@@ -17,5 +17,5 @@ $linkedList->insertAtFront(55);
 //echo 'Linked list: ' . json_encode($linkedList) . PHP_EOL;
 
 //inset a new data after a targeted data in list
-$linkedList->insertDataAfter(2, 100);
+$linkedList->insertDataAfter(10, 100);
 echo 'Linked list: ' . json_encode($linkedList->head) . PHP_EOL;
