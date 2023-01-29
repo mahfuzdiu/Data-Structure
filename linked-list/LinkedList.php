@@ -25,9 +25,12 @@ class LinkedList
                 $currentNode = $currentNode->tail;
             }
 
+            //by updating the $currentNode object it also updating that specific head list object
+            //property because of object properties pass by reference system
             $currentNode->tail = $node;
         }
     }
+
 
     public function insertAtFront($data)
     {
@@ -37,5 +40,31 @@ class LinkedList
 
         $this->head = $node;
         $this->head->tail = $tempListHolder;
+    }
+
+
+    public function insertDataAfter($after, $data)
+    {
+        //object are copied by "pass by reference"
+        $currentNode = $this->head;
+
+        while($currentNode->data != $after && $currentNode->tail != null){
+            //important note:
+            //changing/updating the value of the variable $currentNode itself has no effect on the head object
+            //but when any object's property of $currentNode is changed from $currentNode variable it also changes
+            //the same object property in head list cause these objects have the same reference
+            $currentNode = $currentNode->tail;
+        }
+
+        if($currentNode->tail != null){
+            $tempNextNodesHolder = $currentNode->tail;
+            $node = new Node($data);
+            $currentNode->tail = $node;
+            $currentNode->tail->tail = $tempNextNodesHolder;
+        }
+        else{
+            echo "warning: data = ${after} not in the list" . PHP_EOL;
+        }
+
     }
 }

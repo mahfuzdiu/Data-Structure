@@ -8,11 +8,14 @@ $linkedList = new LinkedList();
 $linkedList->insertAtBack(5);
 $linkedList->insertAtBack(2);
 $linkedList->insertAtBack(10);
-$linkedList->insertAtBack(99);
 
-echo 'Linked list: ' . json_encode($linkedList) . PHP_EOL;
+//echo 'Linked list: ' . json_encode($linkedList) . PHP_EOL;
 
 //insert at front
 $linkedList->insertAtFront(77);
 $linkedList->insertAtFront(55);
-echo 'Linked list: ' . json_encode($linkedList) . PHP_EOL;
+//echo 'Linked list: ' . json_encode($linkedList) . PHP_EOL;
+
+//inset a new data after a targeted data in list
+$linkedList->insertDataAfter(2, 100);
+echo 'Linked list: ' . json_encode($linkedList->head) . PHP_EOL;
