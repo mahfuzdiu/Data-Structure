@@ -48,7 +48,7 @@ class LinkedList
         //object are copied by "pass by reference"
         $currentNode = $this->head;
 
-        while($currentNode->data != $after && $currentNode->tail != null){
+        while ($currentNode->data != $after && $currentNode->tail != null) {
             //important note:
             //changing/updating the value of the variable $currentNode itself has no effect on the head object
             //but when any object's property of $currentNode is changed from $currentNode variable it also changes
@@ -56,26 +56,33 @@ class LinkedList
             $currentNode = $currentNode->tail;
         }
 
-        if($currentNode->data == $after){
+        if ($currentNode->data == $after) {
             $tempNextNodesHolder = $currentNode->tail;
             $node = new Node($data);
             $currentNode->tail = $node;
             $currentNode->tail->tail = $tempNextNodesHolder;
-        }
-        else{
+        } else {
             echo "warning: data = ${after} not in the list" . PHP_EOL;
         }
 
     }
 
-//    public function insertBeforeData($before, $data)
-//    {
-//        $currentNode = $this->head;
-//
-//        while ($currentNode->data != $before && $currentNode->tail != null){
-//            $currentNode = $currentNode->tail;
-//        }
-//
-//        if($currentNode->tail)
-//    }
+    public function insertDataBefore($before, $data)
+    {
+        $currentNode = $this->head;
+
+        $previousNode = null;
+        while ($currentNode->data != $before && $currentNode->tail != null) {
+            $previousNode = $currentNode;
+            $currentNode = $currentNode->tail;
+        }
+
+        if ($currentNode->data == $before) {
+            $node = new Node($data);
+            $previousNode->tail = $node;
+            $previousNode->tail->tail = $currentNode;
+        } else {
+            echo "warning: data = ${before} not in the list" . PHP_EOL;
+        }
+    }
 }
