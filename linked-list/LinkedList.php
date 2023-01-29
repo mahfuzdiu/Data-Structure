@@ -25,8 +25,8 @@ class LinkedList
                 $currentNode = $currentNode->tail;
             }
 
-            //by updating the $currentNode object it also updating that specific head list object
-            //property because of object properties pass by reference system
+            /*by updating the $currentNode object it also updating that specific head list object
+            property because of object properties pass by reference system*/
             $currentNode->tail = $node;
         }
     }
@@ -43,46 +43,65 @@ class LinkedList
     }
 
 
-    public function insertDataAfter($after, $data)
+    /**
+     * @param $position
+     * @param $data
+     * inset a new data after a certain position in list
+     * automatically adds the data at the last of the list if position value is greater than list's length
+     */
+    public function insertAfterPosition($position, $data)
     {
+        if ($position == 1) {
+            $this->insertAtFront($data);
+            return;
+        }
         //object are copied by "pass by reference"
         $currentNode = $this->head;
 
-        while ($currentNode->data != $after && $currentNode->tail != null) {
-            //important note:
-            //changing/updating the value of the variable $currentNode itself has no effect on the head object
-            //but when any object's property of $currentNode is changed from $currentNode variable it also changes
-            //the same object property in head list cause these objects have the same reference
+        $counter = 0;
+        $previousNode = null;
+
+        /*important note:
+            changing/updating the value of the variable $currentNode itself has no effect on the head object
+            but when any object's property of $currentNode is changed from $currentNode variable it also changes
+            the same object property in head list cause these objects have the same reference*/
+
+        while ($counter != $position && isset($currentNode->data)) {
+            $previousNode = $currentNode;
             $currentNode = $currentNode->tail;
+            $counter++;
         }
 
-        if ($currentNode->data == $after) {
-            $tempNextNodesHolder = $currentNode->tail;
-            $node = new Node($data);
-            $currentNode->tail = $node;
-            $currentNode->tail->tail = $tempNextNodesHolder;
-        } else {
-            echo "warning: data = ${after} not in the list" . PHP_EOL;
-        }
+        $previousNode->tail = new Node($data);
+        $previousNode->tail->tail = $currentNode;
 
     }
 
-    public function insertDataBefore($before, $data)
+    public function deleteDataAtPosition($position)
     {
         $currentNode = $this->head;
 
-        $previousNode = null;
-        while ($currentNode->data != $before && $currentNode->tail != null) {
-            $previousNode = $currentNode;
-            $currentNode = $currentNode->tail;
+        if($position == 1)
+        {
+            //checking if at least there are two nodes
+            if(isset($currentNode->tail->data)){
+                $currentNode->data = $currentNode->tail->data;
+                $currentNode->tail = $currentNode->tail->tail;
+                return;
+            } else {
+                $this->head = null;
+                return;
+            }
         }
 
-        if ($currentNode->data == $before) {
-            $node = new Node($data);
-            $previousNode->tail = $node;
-            $previousNode->tail->tail = $currentNode;
-        } else {
-            echo "warning: data = ${before} not in the list" . PHP_EOL;
+        $previousNode = null;
+        $counter = 1;
+        while ($counter != $position && isset($currentNode->data)) {
+            $previousNode = $currentNode;
+            $currentNode = $currentNode->tail;
+            $counter++;
         }
+
+        $previousNode->tail = $currentNode->tail;
     }
 }
