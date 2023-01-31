@@ -16,8 +16,26 @@ $graph->add('D', 'A');
 $graph->add('D', 'C');
 $graph->add('E', 'B');
 
-//adjacency list using associative array/ alternative hashmap
-$graph->traverseGraphFromNode("C");
+$graph->displayGraph();
+$graph->traverseGraphFromNode('C');
+
+
+//directed graph representation
+$graph = new Graph();
+$graph->add('A', 'B');
+$graph->add('A', 'E');
+$graph->add('B', 'G');
+$graph->add('C', 'A');
+$graph->add('D', 'C');
+$graph->add('D', 'B');
+$graph->add('E', 'D');
+$graph->add('F', 'C');
+$graph->add('F', 'G');
+
+$graph->displayGraph();
+$graph->traverseGraphFromNode('D');
+
+
+//$graph->traverseGraphFromNode("C");
 //echo json_encode($graph->graph) . PHP_EOL;
-$graph->displayBfsResult();
 
