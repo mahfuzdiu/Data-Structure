@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/graph-algorithm/Bfs.php';
+require __DIR__ . '/graph-algorithm/Dfs.php';
 
 class Graph
 {
@@ -36,11 +37,14 @@ class Graph
         }
     }
 
-    public function traverseGraphFromNode($source)
+    public function traverseGraphFromNode($source, $algorithm)
     {
+        $traverseAlgorithm = [
+          'bfs' => new Bfs($this->graph),
+          'dfs' => new Dfs($this->graph),
+        ];
         if(!array_key_exists($source, $this->graph)) return "'${$source}' node is not available in graph.";
-        $bfs = new Bfs($this->graph);
-        $bfs->traverseFrom($source);
-        $bfs->displayBfsResult();
+        $traverseAlgorithm[$algorithm]->traverseFrom($source);
+        $traverseAlgorithm[$algorithm]->displayResult();
     }
 }

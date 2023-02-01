@@ -16,8 +16,9 @@ $graph->add('D', 'A');
 $graph->add('D', 'C');
 $graph->add('E', 'B');
 
-$graph->displayGraph();
-$graph->traverseGraphFromNode('C');
+//$graph->displayGraph();
+//$graph->traverseGraphFromNode('C', 'bfs');
+//$graph->traverseGraphFromNode('C', 'dfs');
 
 
 //directed graph representation
@@ -33,9 +34,6 @@ $graph->add('F', 'C');
 $graph->add('F', 'G');
 
 $graph->displayGraph();
-$graph->traverseGraphFromNode('D');
-
-
-//$graph->traverseGraphFromNode("C");
-//echo json_encode($graph->graph) . PHP_EOL;
+$graph->traverseGraphFromNode('A', 'bfs');
+$graph->traverseGraphFromNode('A', 'dfs');
 

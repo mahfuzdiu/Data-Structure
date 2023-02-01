@@ -29,7 +29,7 @@ class Bfs
         if(isset($this->graph[$source])){ //in directed graph some node dont have any edge out of it
             foreach ($this->graph[$source] as $value){
                 if(!in_array($value, $this->visited)){
-                    $this->queue[] = $value;
+                    $this->queue[] = $value; //key dif on bfs vs dfs: pushes all the unvisited nodes of a source into the queue
                     $this->visited[] = $value;
                 }
             }
@@ -43,7 +43,7 @@ class Bfs
     }
 
 
-    public function displayBfsResult()
+    public function displayResult()
     {
         $bfsResult = '';
         foreach ($this->result as $key => $node){
